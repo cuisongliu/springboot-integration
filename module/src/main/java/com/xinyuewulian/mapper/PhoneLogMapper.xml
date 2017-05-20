@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xinyuewulian.mapper.PhoneLogMapper">
+  <resultMap id="BaseResultMap" type="com.xinyuewulian.entity.PhoneLog">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="phone_serial_id" jdbcType="VARCHAR" property="phoneSerialId" />
+    <result column="phone_system_id" jdbcType="VARCHAR" property="phoneSystemId" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, phone_serial_id, phone_system_id, create_date
+  </sql>
+
+  <resultMap id="BoBaseResultMap" type="com.xinyuewulian.bo.PhoneLogBo" extends="BaseResultMap">
+    <result column="phone_num" jdbcType="INTEGER" property="phoneNum" />
+    <result column="system_num" jdbcType="INTEGER" property="systemNum" />
+  </resultMap>
+
+  <select id="queryPhoneSelectList"   resultMap="BaseResultMap">
+    SELECT pl.* from m_phone_log pl inner JOIN m_system s on s.system_id = pl.phone_system_id
+    AND NOT EXISTS (
+      SELECT 1 FROM m_phone p WHERE p.phone_serial = pl.phone_serial_id
+    )
+  </select>
+
+  <select id="queryPhoneSelectAllList"   resultMap="BoBaseResultMap">
+    SELECT pl.*
+    ,(SELECT count(1) from m_phone p WHERE p.phone_serial = pl.phone_serial_id ) as phone_num
+    ,(SELECT count(1) from m_system s WHERE s.system_code = pl.phone_system_id ) as system_num
+    from m_phone_log pl
+  </select>
+
+</mapper>

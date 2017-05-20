@@ -1,0 +1,50 @@
+//apply plugin: "com.cuisongliu.plugin.mybatis-generator"
+//buildscript{
+//    def baseUrl = "http://maven.cuisongliu.com"
+//    def nexusUrl = "$baseUrl/content/groups/public/"
+//    repositories {
+//        maven { url "$nexusUrl" }
+//        mavenLocal()
+//    }
+//    dependencies {
+//        classpath "com.cuisongliu.plugin:mybatis-generator:1.0"
+//    }
+//}
+buildscript{
+    def baseUrl = "http://maven.cuisongliu.com"
+    def nexusUrl = "$baseUrl/content/groups/public/"
+    repositories {
+        mavenLocal()
+        maven { url "$nexusUrl" }
+    }
+    dependencies {
+        classpath "com.wfsp:ojdbc6:11.1.0.7.0"
+    }
+}
+plugins {
+    id "com.cuisongliu.plugin.mybatis-generator" version "0.9.4"
+}
+
+dependencies {
+    compile "${group}:springboot:1.0"
+}
+mbg{
+    overwrite = false
+    consoleable = true
+    jdbc{
+        driver = "oracle.jdbc.OracleDriver"
+        url    = "jdbc:oracle:thin:@172.16.4.128:1521:wfspdb"
+        username = "wfsp"
+        password = "wfsp"
+    }
+//    sqlScript = "test.sql"
+//    generatorFile = "src/main/resources/generatorConfig.xml"
+    xml{
+        resourcesProject = "src/main/java"
+        mapperPlugin = tk.mybatis.mapper.generator.MapperPlugin.class
+        mapperMapper = "com.cuisongliu.springboot.core.mapper.MyMapper"
+        mapperPackage= "com.xinyuewulian.mapper"
+        modelPackage = "com.xinyuewulian.entity"
+        xmlPackage =   "com.xinyuewulian.mapper"
+    }
+}

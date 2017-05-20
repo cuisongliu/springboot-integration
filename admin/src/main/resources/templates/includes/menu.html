@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+
+    <!-- 菜单 -->
+    <ul th:fragment="user-menu" class="sidebar-nav">
+        <li class="sidebar-nav-link">
+            <a href="/" class="active">
+                <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
+            </a>
+        </li>
+        <li class="sidebar-nav-link">
+            <a href="#"  th:attr="link=${storeManagerUrl}"  class="pjax">
+                <i class="am-icon-plus sidebar-nav-link-logo"></i> 货物信息维护
+            </a>
+        </li>
+
+        <li class="sidebar-nav-link">
+            <a href="#" th:attr="link=${recordManagerUrl}" class="pjax">
+                <i class="am-icon-gear sidebar-nav-link-logo"></i> 货物流水管理
+            </a>
+        </li>
+
+    </ul>
+
+
+    <!-- 菜单 -->
+    <ul th:fragment="admin-menu" class="sidebar-nav">
+        <li class="sidebar-nav-link">
+            <a href="/" class="active">
+                <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
+            </a>
+        </li>
+        <!--<li class="sidebar-nav-heading"><span class="sidebar-nav-heading-info"> 系统管理</span></li>-->
+        <li class="sidebar-nav-link">
+            <a href="#" th:attr="link=${userManagerUrl}" class="pjax">
+                <i class="am-icon-gear sidebar-nav-link-logo" ></i> 用户管理
+            </a>
+        </li>
+
+        <li class="sidebar-nav-link">
+            <a href="#" th:attr="link=${paramManagerUrl}" class="pjax">
+                <i class="am-icon-gg sidebar-nav-link-logo"></i> 参数信息维护
+            </a>
+        </li>
+
+        <li class="sidebar-nav-link">
+            <a href="#" class="sidebar-nav-sub-title">
+                <i class="am-icon-tasks sidebar-nav-link-logo"></i> 业务管理
+                <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+            </a>
+            <ul class="sidebar-nav sidebar-nav-sub">
+                <li class="sidebar-nav-link">
+                    <a href="#" th:attr="link=${systemManagerUrl}" class="pjax">
+                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 系统接入维护
+                    </a>
+                </li>
+
+                <li class="sidebar-nav-link">
+                    <a href="#" th:attr="link=${phoneSelectManagerUrl}" class="pjax">
+                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 手持机待选择列表管理
+                    </a>
+                </li>
+
+                <li class="sidebar-nav-link">
+                    <a href="#" th:attr="link=${phoneManagerUrl}" class="pjax">
+                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 手持机管理
+                    </a>
+                </li>
+
+                <li class="sidebar-nav-link">
+                    <a href="#" th:attr="link=${typeManagerUrl}" class="pjax">
+                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 货物类型管理
+                    </a>
+                </li>
+
+                <li class="sidebar-nav-link">
+                    <a href="#" th:attr="link=${storeManagerUrl}" class="pjax">
+                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 货物信息管理
+                    </a>
+                </li>
+
+                <li class="sidebar-nav-link">
+                    <a href="#" th:attr="link=${recordManagerUrl}" class="pjax">
+                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 货物流水管理
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+
+
+</body>
+</html>
+

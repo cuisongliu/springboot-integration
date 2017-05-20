@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:replace="includes/modules :: navigation"/>
+
+<div class="row-content am-cf">
+
+    <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+        <div class="widget am-cf">
+            <div class="widget-head am-cf">
+                <div class="widget-title am-fl">手持机新增</div>
+            </div>
+            <div class="widget-body am-fr">
+                <form class="am-form tpl-form-border-form tpl-form-border-br" id="phoneForm" >
+                    <div class="am-form-group">
+                        <label   class="am-u-sm-3 am-form-label">选择手持机序号<span class="tpl-form-line-small-title">手持机序号</span></label>
+                        <div class="am-u-sm-9">
+                            <select data-am-selected="{btnSize: 'sm'}" required="" name="phoneSerial"  th:attr="link=${phoneSerialValidateUrl}"  >
+                                <option value="option2" th:each="psm :${phoneSelectMap}" th:value="${psm.phoneSerialId}" th:text="${'手持机序号:'+psm.phoneSerialId+ ',对接系统序号:' +psm.phoneSystemId + ',产生时间:' +#dates.format(psm.createDate,'yyyy-MM-dd HH:mm')}">IT业界</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="am-form-group">
+                        <label   class="am-u-sm-3 am-form-label">手持机名称<span class="tpl-form-line-small-title">手持机名称</span></label>
+                        <div class="am-u-sm-9">
+                            <input type="text" class="tpl-form-input" name="phoneName"  required="true" minlength="3"    placeholder="输入手持机名称（至少 3 个字符）"/>
+                            <small>请填写手持机名称。</small>
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label   class="am-u-sm-3 am-form-label">手持机类型<span class="tpl-form-line-small-title">手持机类型</span></label>
+                        <div class="am-u-sm-9">
+                            <input type="text" class="tpl-form-input" name="phoneType"  required="true"  placeholder="输入手持机类型"/>
+                            <small>请填写手持机类型。</small>
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label   class="am-u-sm-3 am-form-label">所属用户<span class="tpl-form-line-small-title">所属用户</span></label>
+                        <div class="am-u-sm-9">
+                            <select data-am-selected="{btnSize: 'sm'}"   name="userId" data-placeholder="输入所属用户">
+                                <option></option>
+                                <option value="option2" th:each="um :${userMap}" th:value="${um.id}" th:text="${um.userName+ ' - ' +userTypeMap[um.userType]}">IT业界</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <div class="am-u-sm-9 am-u-sm-push-3">
+                            <button type="button" class="am-btn am-btn-primary btn-loading-example "
+                                    data-am-loading="{spinner: 'circle-o-notch', loadingText: '提交中...'}" th:attr="link=${saveUrl}" id="btnSubmit">提交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../static/phone/js/add.js" th:src="@{/static/phone/js/add.js}"  ></script>
+</body>
+</html>

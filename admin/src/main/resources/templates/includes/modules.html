@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <!-- 头部 -->
+    <header th:fragment="header">
+        <!-- logo -->
+        <div class="am-fl tpl-header-logo">
+            <a href="javascript:;">
+                <!--<img src="../assets/img/logo.png" th:src="@{/assets/img/logo.png}" alt=""/>-->
+                <!--/*@thymesVar id="indexTitle" type="com.xinyuewulian.admin.controller.BaseController"*/-->
+                <span th:text="${indexTitle}">心悦物联后台管理系统</span>
+            </a>
+        </div>
+        <!-- 右侧内容 -->
+        <div class="tpl-header-fluid">
+            <!-- 侧边切换 -->
+            <div class="am-fl tpl-header-switch-button am-icon-list">
+            <span></span>
+            </div>
+            <!-- 搜索 -->
+            <div class="am-fl tpl-header-search">
+                <form class="tpl-header-search-form" action="javascript:;">
+                    <button class="tpl-header-search-btn am-icon-search"></button>
+                    <input class="tpl-header-search-box" type="text" placeholder="搜索内容..."/>
+                </form>
+            </div>
+
+            <!-- 其它功能-->
+            <div class="am-fr tpl-header-navbar">
+                <ul>
+                    <!-- 欢迎语 -->
+                    <li class="am-text-sm tpl-header-navbar-welcome">
+                        <!--/*@thymesVar id="userName" type="com.xinyuewulian.admin.controller.IndexController"*/-->
+                        <a href="javascript:;">欢迎你, <span th:text="${userName}" >Amaze UI</span> </a>
+                    </li>
+                    <!-- 退出 -->
+                    <li class="am-text-sm">
+                        <!--/*@thymesVar id="loginOutUrl" type="com.xinyuewulian.admin.extra.UrlEnum"*/-->
+                        <a href="#" link="#" th:attr="link=${loginOutUrl}"  id="exitHref">
+                            <span class="am-icon-sign-out"></span> 退出
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </header>
+
+    <div th:fragment="user" class="tpl-sidebar-user-panel">
+        <div class="tpl-user-panel-slide-toggleable">
+            <div class="tpl-user-panel-profile-picture">
+                <img src="../assets/img/user04.png" alt=""  th:src="@{/assets/img/user04.png}"/>
+            </div>
+                        <span class="user-panel-logged-in-text">
+                            <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon" ></i>
+                            <!--/*@thymesVar id="userName" type="com.xinyuewulian.admin.controller.IndexController"*/-->
+                            <span th:text="${userName}">禁言小张</span>
+                        </span>
+            <a href="javascript:;" class="tpl-user-panel-action-link indexAjax" th:attr="link=${profileUrl}"> <span class="am-icon-pencil"></span> 账号设置</a>
+        </div>
+    </div>
+
+
+    <footer th:fragment="footer" data-am-widget="footer"
+            class="am-footer am-footer-default"
+            data-am-footer="{  }">
+        <div class="am-footer-miscs ">
+            <p>由 <a href="https://www.cuisongliu.com/" title="崔金睿"
+                    target="_blank" class="">崔金睿</a>
+                提供技术支持</p>
+            <p>Copyright&copy;2015-2016 cuisongliu All Rights Reserved</p>
+            <p>津ICP备15007805号-1</p>
+        </div>
+    </footer>
+
+    <div th:fragment="exit-modal" class="am-modal am-modal-confirm" tabindex="-1" id="exit-system">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">退出</div>
+            <div class="am-modal-bd">
+                你确定要退出吗？
+            </div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" data-am-modal-cancel="true">取消</span>
+                <span class="am-modal-btn" data-am-modal-confirm="true">确定</span>
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="confirmModal" class="am-modal am-modal-confirm" tabindex="-1"   id="delModal">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">提示</div>
+            <div class="am-modal-bd">确定要删除这条记录吗?</div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" data-am-modal-cancel="">取消</span>
+                <span class="am-modal-btn" data-am-modal-confirm="">确定</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid am-cf" th:fragment="navigation">
+        <div class="row">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
+                <div class="page-header-heading">
+                    <!--/*@thymesVar id="moduleName1" type="com.xinyuewulian.admin.controller.BaseController"*/-->
+                    <span class="am-icon-home page-header-heading-icon" th:text="${moduleName1}">首页</span>
+
+                    <!--/*@thymesVar id="moduleName2" type="com.xinyuewulian.admin.controller.BaseController"*/-->
+                    <small th:text="${moduleName2}">管理系统</small>
+                </div>
+                <!--/*@thymesVar id="moduleDecrypt" type="com.xinyuewulian.admin.controller.BaseController"*/-->
+                <p class="page-header-description" th:text="${moduleDecrypt}">对心悦物联系统进行安卓和web页面进行接口和手持机信息管理,包括用户和流水信息等.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div th:fragment="pageDiv" class="am-u-lg-12 am-cf" th:if="${pageInfo.size ne 0 }">
+        <div class="am-fr">
+            <ul class="am-pagination tpl-pagination">
+                <li th:class="${!pageInfo.hasPreviousPage}? 'am-disabled' " >
+                    <a href="#" th:class="${pageInfo.hasPreviousPage}? 'reload' "  th:attr="link=${contentUrl + pageInfo.pageSize +'/' + pageInfo.prePage}">«</a>
+                </li>
+                <li th:each="i : ${#numbers.sequence( 1, pageInfo.pages)}"   th:class="${i eq pageInfo.pageNum}? 'am-active' " >
+                    <a href="#" class="reload"   th:attr="link=${ contentUrl+ pageInfo.pageSize +'/' + i }"   th:text="${i}"></a>
+                </li>
+                <li th:class="${!pageInfo.hasNextPage}? 'am-disabled' " >
+                    <a href="#" th:class="${pageInfo.hasNextPage}? 'reload' "  th:attr="link=${ contentUrl + pageInfo.pageSize +'/' + pageInfo.nextPage}">»</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+

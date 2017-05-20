@@ -1,0 +1,4 @@
+rootProject.name = 'springboot-integration'
+include 'module'
+include 'service'
+include 'admin'

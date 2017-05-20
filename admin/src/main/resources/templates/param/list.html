@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:replace="includes/modules :: navigation"/>
+
+    <div class="row-content am-cf">
+        <div class="row">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                <div class="widget am-cf">
+                    <div class="widget-head am-cf">
+                        <div class="widget-title  am-cf">参数列表</div>
+                    </div>
+                    <!--左侧按钮-->
+                    <div class="widget-body  am-fr">
+                        <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
+                            <div class="am-form-group">
+                                <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-sm">
+                                        <button type="button" class="am-btn am-btn-default am-btn-success reload" th:attr="link=${addUrl}"><span class="am-icon-plus"></span> 新增</button>
+                                        <!--<button type="button" class="am-btn am-btn-default am-btn-secondary"><span class="am-icon-save"></span> 保存</button>-->
+                                        <!--<button type="button" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-archive"></span> 审核</button>-->
+                                        <!--<button type="button" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span> 删除</button>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--搜索框-->
+                        <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
+                            <!--<div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">-->
+                                <!--<input type="text" class="am-form-field" name="keyWords" th:value="${keyWords}" />-->
+                                <!--<span class="am-input-group-btn">-->
+                                    <!--<button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search search-keyWords"-->
+                                            <!--type="button" id="keyWordsBtn"  th:attr="link=${ contentUrl + pageInfo.pageSize +'/' + pageInfo.pageNum }" ></button>-->
+                                <!--</span>-->
+                            <!--</div>-->
+                        </div>
+
+                        <div class="am-u-sm-12">
+                            <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black  dataTable"
+                                   id="example-r">
+                                <thead>
+                                <tr>
+                                    <th class="sorting">参数编码</th>
+                                    <th class="sorting">参数名称</th>
+                                    <th class="sorting">参数值</th>
+                                    <th class="sorting">参数类型</th>
+                                    <th class="sorting">操作类型</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr  th:each="entity : ${list}" class="gradeX" >
+                                    <td th:text="${entity.paramCode}">admin</td>
+                                    <td th:text="${entity.paramName}">admin</td>
+                                    <td th:text="${entity.paramValue}">0</td>
+                                    <td th:text="${paramTypeMap[entity.paramType]}">管理员</td>
+                                    <td>
+                                        <div class="tpl-table-black-operation">
+                                            <a href="javascript:;" class="reload" th:if="${entity.paramType ne 2 }" th:attr="link=${getUrl+entity.id+'/'+pageInfo.pageSize +'/' + pageInfo.pageNum}">
+                                                <i class="am-icon-pencil"></i> 编辑
+                                            </a>
+                                            <a href="javascript:;"  class="tpl-table-black-operation-del" th:if="${entity.paramType eq 0 }"  th:attr="link=${delUrl+entity.id+'/'+pageInfo.pageSize +'/' + pageInfo.pageNum}">
+                                                <i class="am-icon-trash"></i> 删除
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="odd" th:if="${pageInfo.size eq 0 }"><td valign="top" colspan="5" class="dataTables_empty">表中数据为空</td></tr>
+                                <!-- more data -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div th:replace="includes/modules :: pageDiv"/>
+                        <!--<div class="am-u-lg-12 am-cf" th:if="${pageInfo.size ne 0 }">-->
+                            <!--<div class="am-fr">-->
+                                <!--<ul class="am-pagination tpl-pagination">-->
+                                    <!--<li th:class="${pageInfo.hasPreviousPage}? 'am-disabled' " >-->
+                                        <!--<a href="#" th:class="${pageInfo.hasPreviousPage}? 'reload' "  th:attr="link=${contentUrl + pageInfo.pageSize +'/' + pageInfo.prePage}">«</a>-->
+                                    <!--</li>-->
+                                    <!--<li th:each="i : ${pageInfo.pages}"   th:class="${i eq pageInfo.pageNum}? 'am-active' " >-->
+                                        <!--<a href="#" class="reload"   th:attr="link=${ contentUrl+ pageInfo.pageSize +'/' + i }"   th:text="${i}">2</a>-->
+                                    <!--</li>-->
+                                    <!--<li th:class="${pageInfo.hasNextPage}? 'am-disabled' " >-->
+                                        <!--<a href="#" th:class="${pageInfo.hasNextPage}? 'reload' "  th:attr="link=${ contentUrl + pageInfo.pageSize +'/' + pageInfo.nextPage}">»</a>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../static/index/js/content.js" th:src="@{/static/index/js/content.js}" ></script>
+    <script type="text/javascript" src="../static/param/js/list.js" th:src="@{/static/param/js/list.js}" ></script>
+</body>
+</html>

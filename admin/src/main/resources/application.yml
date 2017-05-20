@@ -1,0 +1,68 @@
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    cache: false
+  mvc:
+    static-path-pattern: classpath:/assets/**,classpath:/static/**
+    date-format: yyyy-MM-dd HH:mm
+    locale: zh_CN
+    ignore-default-model-on-redirect: false
+  resources:
+    cache-period: 1
+  aop:
+    proxy-target-class: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/dbname?useUnicode=true&amp;characterEncoding=UTF8&amp;autoReconnect=true
+    username: root
+    password:
+    druid:
+      filters: stat,wall,log4j
+      connection-properties:
+        - druid.stat.mergeSql=true
+        - druid.stat.slowSqlMillis=5000
+      filter:
+        enable: true
+        principal-session-name: session_admin
+        profile-enable: true
+        principal-cookie-name: session_admin
+        session-stat-enable: true
+      stat:
+        enable: true
+        aop-types: type,name
+        target-bean-type: com.cuisongliu.springboot.core.biz.BaseBiz
+        bean-names:
+          - UserMapper
+          - userMapper
+banner:
+  location: banner.txt
+server:
+  port: 80
+  context-path: /
+  error:
+    path: /error
+  tomcat:
+    protocolHeader: x-forwarded-proto
+    remoteIpHeader: x-forwarded-for
+    max-threads: 800 # secs
+logging:
+  level:
+        com.cuisongliu: debug
+        com.xinyuewulian: debug
+  path: /app/logs
+  file: admin.log
+pagehelper:
+  reasonable: true
+  support-methods-arguments: true
+  page-size-zero: true
+  auto-runtime-dialect: true
+  params: count=countSql
+  helper-dialect: mysql
+mapper:
+  not-empty: true
+  identity: mysql
+  mappers:
+    - com.cuisongliu.springboot.core.mapper.MyMapper
+  before: true
+mybatis:
+  type-aliases-package: com.xinyuewulian.entity
+  mapper-locations: classpath*:com/xinyuewulian/mapper/*.xml

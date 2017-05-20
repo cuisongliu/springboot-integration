@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xinyuewulian.mapper.SystemMapper">
+  <resultMap id="BaseResultMap" type="com.xinyuewulian.entity.System">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="system_id" jdbcType="VARCHAR" property="systemId" />
+    <result column="system_code" jdbcType="VARCHAR" property="systemCode" />
+    <result column="system_name" jdbcType="VARCHAR" property="systemName" />
+    <result column="system_type" jdbcType="INTEGER" property="systemType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, system_id, system_code, system_name, system_type
+  </sql>
+</mapper>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    <div th:replace="includes/modules :: navigation"/>
+
+    <div class="row-content am-cf">
+
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-fl">帐号新增</div>
+                </div>
+                <div class="widget-body am-fr">
+                    <form class="am-form tpl-form-border-form tpl-form-border-br" id="profileForm" >
+                        <div class="am-form-group">
+                            <label   class="am-u-sm-3 am-form-label">用户名<span class="tpl-form-line-small-title">用户名昵称</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="tpl-form-input" name="userName"  required="true" minlength="3"    placeholder="输入用户名（至少 3 个字符）"/>
+                                <small>请填写用户名呢称。</small>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label   class="am-u-sm-3 am-form-label">登录名<span class="tpl-form-line-small-title">用户名登录名</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="tpl-form-input js-pattern-loginName" name="loginName" th:attr="link=${loginNameValidateUrl}"
+                                       required="true" minlength="3"    placeholder="输入登录用户名（至少 3 个字符,且只能输入数字和字母）"/>
+                                <small>请填写用户登录名,新增后无法修改,登录密码默认为:<span id="smLoginName"></span>123。</small>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label   class="am-u-sm-3 am-form-label">用户类型<span class="tpl-form-line-small-title">用户类型</span></label>
+                            <div class="am-u-sm-9">
+                                <select data-am-selected="{btnSize: 'sm'}" required="" name="userType">
+                                    <option value="option2" th:each="utm :${userTypeMap}" th:value="${utm.key}" th:text="${utm.value}">IT业界</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9 am-u-sm-push-3">
+                                <button type="button" class="am-btn am-btn-primary btn-loading-example "
+                                        data-am-loading="{spinner: 'circle-o-notch', loadingText: '提交中...'}" th:attr="link=${saveUrl}" id="btnSubmit">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/user/js/add.js" th:src="@{/static/user/js/add.js}"  ></script>
+</body>
+</html>

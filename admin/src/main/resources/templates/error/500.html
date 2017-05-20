@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta  th:replace="includes/head :: meta"/>
+    <title th:replace="includes/head :: title"></title>
+    <link  th:replace="includes/head :: common-link"/>
+    <script th:replace="includes/head :: head-common-js"></script>
+</head>
+<body data-type="widgets" class="theme-white">
+<!-- 内容区域 -->
+<div class="">
+    <div class="row-content am-cf">
+        <div class="widget am-cf">
+            <div class="widget-body">
+                <div class="tpl-page-state">
+                    <div class="tpl-page-state-title am-text-center tpl-error-title">500</div>
+                    <div class="tpl-error-title-info">服务器内部错误</div>
+                    <div class="tpl-page-state-content tpl-error-content">
+                        <p>对不起,系统后台报错,请联系管理员。</p>
+                        <p th:text="${message}">对不起,系统后台报错,请联系管理员。</p>
+                        <a type="button" href="/" class="am-btn am-btn-secondary am-radius tpl-error-btn">返回主页</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

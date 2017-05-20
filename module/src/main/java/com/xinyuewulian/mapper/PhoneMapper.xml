@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xinyuewulian.mapper.PhoneMapper">
+  <resultMap id="BaseResultMap" type="com.xinyuewulian.entity.Phone">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="phone_serial" jdbcType="VARCHAR" property="phoneSerial" />
+    <result column="phone_name" jdbcType="VARCHAR" property="phoneName" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="phone_type" jdbcType="VARCHAR" property="phoneType" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, phone_serial, phone_name, user_id, phone_type
+  </sql>
+
+  <resultMap id="BoBaseResultMap" type="com.xinyuewulian.bo.PhoneBo" extends="BaseResultMap">
+    <result column="user_name" jdbcType="INTEGER" property="userName" />
+  </resultMap>
+
+  <select id="queryPhoneList"   resultMap="BoBaseResultMap" parameterType="com.xinyuewulian.vo.QueryVo">
+    SELECT t.*,u.user_name
+    from m_phone t LEFT JOIN m_user u on u.id=t.user_id  where 1=1
+    <if test="keyWords !=null  and keyWords !='' ">
+      and
+      instr(
+      concat(
+      ifnull(t.phone_name, ''),
+      ifnull(u.user_name, ''),
+      ifnull(t.phone_type, '')
+      ),#{keyWords, jdbcType=VARCHAR})>0
+    </if>
+  </select>
+</mapper>

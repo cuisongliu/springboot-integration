@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*@thymesVar id="indexTitle" type="com.xinyuewulian.admin.controller.BaseController"*/-->
+    <title th:fragment="title" th:text="${indexTitle}">心悦物联后台管理系统</title>
+    <link th:fragment="common-link" rel="stylesheet" href="../assets/css/amazeui.min.css" th:href="@{/assets/css/amazeui.min.css}"/>
+    <link th:fragment="common-link" rel="stylesheet" href="../assets/css/amazeui.datatables.min.css" th:href="@{/assets/css/amazeui.datatables.min.css}" />
+    <link th:fragment="common-link" rel="stylesheet" href="../assets/css/app.css" th:href="@{/assets/css/app.css}" />
+    <link th:fragment="common-link" rel="icon" type="image/png" href="../assets/i/favicon.png" th:href="@{/assets/i/favicon.png}"/>
+    <link th:fragment="common-link" rel="stylesheet" href="../assets/css/amazeui.chosen.css" th:href="@{/assets/css/amazeui.chosen.css}" />
+
+    <link th:fragment="login-link" rel="stylesheet" href="../assets/css/amazeui.min.css" th:href="@{/assets/css/amazeui.min.css}"/>
+    <link th:fragment="login-link" rel="stylesheet" href="../static/login/css/core.css" th:href="@{/static/login/css/core.css}"/>
+    <link th:fragment="login-link" rel="stylesheet" href="../static/login/css/form.css" th:href="@{/static/login/css/form.css}"/>
+
+
+    <meta th:fragment="meta" charset="UTF-8"/>
+    <meta th:fragment="meta" name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta th:fragment="meta" http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta th:fragment="meta" name="keywords" content="index"/>
+    <meta th:fragment="meta" name="renderer" content="webkit"/>
+    <meta th:fragment="meta" http-equiv="Cache-Control" content="no-siteapp" />
+</head>
+<body>
+    <script th:fragment="head-common-js" type="text/javascript" src="../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}" ></script>
+    <script th:fragment="head-common-js" type="text/javascript" src="../assets/js/jquery.serialize-object.min.js" th:src="@{/assets/js/jquery.serialize-object.min.js}" ></script>
+    <script th:fragment="head-common-js" type="text/javascript" src="../assets/js/amazeui.min.js" th:src="@{/assets/js/amazeui.min.js}" ></script>
+    <script th:fragment="head-common-js" type="text/javascript" src="../assets/js/app.js" th:src="@{/assets/js/app.js}" ></script>
+    <script th:fragment="head-common-js" type="text/javascript" src="../assets/js/amazeui.chosen.min.js" th:src="@{/assets/js/amazeui.chosen.min.js}" ></script>
+    <script th:fragment="head-common-js" type="text/javascript" src="../assets/js/amazeui.dialog.min.js" th:src="@{/assets/js/amazeui.dialog.min.js}" ></script>
+
+
+    <!--<script th:fragment="index-js" type="text/javascript" src="../assets/js/amazeui.datatables.min.js" th:src="@{/assets/js/amazeui.datatables.min.js}" ></script>-->
+    <!--<script th:fragment="index-js" type="text/javascript" src="../assets/js/dataTables.responsive.min.js" th:src="@{/assets/js/dataTables.responsive.min.js}" ></script>-->
+    <script th:fragment="index-js" type="text/javascript" src="../static/index/js/index.js" th:src="@{/static/index/js/index.js}" ></script>
+
+
+</body>
+</html>

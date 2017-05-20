@@ -1,0 +1,112 @@
+def baseUrl = "http://maven.cuisongliu.com"
+def nexusUrl = "$baseUrl/content/groups/public/"
+
+allprojects {
+    group 'com.cuisongliu'
+    version = '1.0'
+
+    repositories {
+        maven { url "$nexusUrl" }
+        mavenCentral()
+        mavenLocal()
+        jcenter()
+    }
+}
+
+//额外的任务
+//显示所有的变量信息
+task printEnv {
+    println "当前的工程名称为:[$project.name]"
+    repositories.each {
+        println "repository: ${it.name} ('${it.url}')"
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven'
+    apply plugin: 'idea'
+
+    // JVM 版本号要求
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+    // java编译的时候缺省状态下会因为中文字符而失败
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+        options.compilerArgs << "-Xlint:unchecked"
+    }
+
+    configurations {
+//        classpath
+//        runtime.extendsFrom classpath
+    }
+
+
+    sourceSets {
+        main {
+            java {
+                srcDir 'src/main/java'
+            }
+            resources {
+                srcDir 'src/main/resources'
+                include '**/*'
+
+                srcDir 'src/main/java'
+                include '**/*'
+                exclude '**/*.java'
+            }
+        }
+
+        test {
+            java {
+                srcDir 'src/test/java'
+            }
+            resources {
+                srcDir 'src/test/resources'
+                include '**/*'
+
+                srcDir 'src/test/java'
+                include '**/*'
+                exclude '**/*.java'
+            }
+        }
+
+    }
+
+    //打包源代码
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    javadoc {
+        options{
+            encoding "UTF-8"
+            charSet 'UTF-8'
+            author true
+            version true
+            links '<a href="http://docs.oracle.com/javase/7/docs/api">http://docs.oracle.com/javase/7/docs/api</a>'
+            title "javadoc"
+        }
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+
+    artifacts {
+        archives sourcesJar
+        archives javadocJar
+    }
+
+    configurations.all {
+        resolutionStrategy.cacheChangingModulesFor 10, 'seconds'//10秒钟，可自定义，如10,'minutes'10分钟，10,'hours'10小时
+    }
+}
+//全部删除构建文件
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

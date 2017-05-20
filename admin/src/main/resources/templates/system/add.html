@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    <div th:replace="includes/modules :: navigation"/>
+
+    <div class="row-content am-cf">
+
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-fl">应用新增</div>
+                </div>
+                <div class="widget-body am-fr">
+                    <form class="am-form tpl-form-border-form tpl-form-border-br" id="systemForm" >
+                        <div class="am-form-group">
+                            <label   class="am-u-sm-3 am-form-label">接入应用Key<span class="tpl-form-line-small-title">接入应用Key</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="tpl-form-input" name="systemId" th:value="${entity.systemId}" readonly=""  required="true" />
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label   class="am-u-sm-3 am-form-label">应用编号<span class="tpl-form-line-small-title">应用编号</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="tpl-form-input" name="systemCode" th:value="${entity.systemCode}" readonly=""  required="true" />
+                            </div>
+                        </div>
+
+
+                        <div class="am-form-group">
+                            <label   class="am-u-sm-3 am-form-label">应用名称<span class="tpl-form-line-small-title">应用名称</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="tpl-form-input" name="systemName"  required="true" minlength="3"    placeholder="输入应用名称（至少 3 个字符）"/>
+                                <small>请填写应用名称。</small>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label   class="am-u-sm-3 am-form-label">应用类型<span class="tpl-form-line-small-title">应用类型</span></label>
+                            <div class="am-u-sm-9">
+                                <select data-am-selected="{btnSize: 'sm'}" required="" name="systemType">
+                                    <option value="option2" th:each="stm :${systemTypeMap}" th:value="${stm.key}" th:text="${stm.value}">IT业界</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9 am-u-sm-push-3">
+                                <button type="button" class="am-btn am-btn-primary btn-loading-example "
+                                        data-am-loading="{spinner: 'circle-o-notch', loadingText: '提交中...'}" th:attr="link=${saveUrl}" id="btnSubmit">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/system/js/add.js" th:src="@{/static/system/js/add.js}"  ></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xinyuewulian.mapper.TypeMapper">
+  <resultMap id="BaseResultMap" type="com.xinyuewulian.entity.Type">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type_code" jdbcType="VARCHAR" property="typeCode" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <result column="type_order" jdbcType="INTEGER" property="typeOrder" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, type_code, type_name, type_order
+  </sql>
+  <resultMap id="BoBaseResultMap" type="com.xinyuewulian.bo.TypeBo" extends="BaseResultMap">
+    <result column="select_num" jdbcType="INTEGER" property="selectNum" />
+  </resultMap>
+  <select id="queryTypeByUserId" parameterType="int"  resultMap="BaseResultMap">
+    select t.* from m_type t where EXISTS (
+	  SELECT 1 from m_user_type  uut where t.id=uut.type_id and uut.user_id =#{_parameter}
+    )
+  </select>
+
+  <select id="queryTypeListByModify" parameterType="int"  resultMap="BoBaseResultMap">
+     select t.*
+       , (select count(1) from m_user_type ut where   ut.type_id=t.id
+        <if test="_parameter != null and _parameter !=''">
+         and ut.user_id = #{_parameter}
+        </if>
+        ) as select_num
+     from m_type t where 1=1
+  </select>
+</mapper>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    <div th:replace="includes/modules :: navigation"/>
+
+    <div class="row-content am-cf">
+
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-fl">帐号设置</div>
+                </div>
+                <div class="widget-body am-fr">
+                    <form class="am-form tpl-form-border-form tpl-form-border-br" id="profileForm" >
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-3 am-form-label">用户名<span class="tpl-form-line-small-title">用户名昵称</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="hidden" id="profile" th:value="${profile}"  />
+                                <input type="hidden" name="id" th:value="${entity.id}"  />
+                                <input type="text" class="tpl-form-input" name="userName" th:value="${entity.userName}" required="true" minlength="3"  id="user-name" placeholder="输入用户名（至少 3 个字符）"/>
+                                <small>请填写用户名呢称。</small>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group" th:if="${profile ne 'false' }">
+                            <label for="login-password" class="am-u-sm-3 am-form-label">密码<span class="tpl-form-line-small-title">用户密码</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="password" class="tpl-form-input" name="loginPasswd" minlength="3"  id="login-password" placeholder="输入密码（至少 3 个字符）"/>
+                                <small>请填写登录密码。</small>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group" th:if="${profile ne 'false' }">
+                            <label for="login-password-2" class="am-u-sm-3 am-form-label">确认密码<span class="tpl-form-line-small-title">确认密码</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="password" class="tpl-form-input"  minlength="3"  id="login-password-2" data-equal-to="#login-password" placeholder="请与上面输入的值一致"/>
+                                <small>请填写登录密码。</small>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group" th:if="${profile eq 'false' }">
+                            <label   class="am-u-sm-3 am-form-label">是否重置密码 <span class="tpl-form-line-small-title" th:text="${'默认密码:'+entity.loginName+'123'}"></span></label>
+                            <div class="am-u-sm-9">
+                                <div class="tpl-switch">
+                                    <input type="checkbox" name="resetPasswd" class="ios-switch bigswitch tpl-switch-btn" />
+                                    <div class="tpl-switch-btn-view">
+                                        <div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group" th:if="${profile eq 'false' }">
+                            <label   class="am-u-sm-3 am-form-label">手持机 <span class="tpl-form-line-small-title">扫描二维码</span></label>
+                            <div class="am-u-sm-9">
+
+                                <label th:each="phone : ${phoneList}" class="am-checkbox-inline" th:if="${ (phone.userId eq entity.id) or (phone.userId eq null ) }">
+                                    <input type="checkbox" th:value="${phone.id}"  name="phone" minchecked="1" th:checked="${phone.userId eq entity.id}"   th:text="${phone.phoneName}"  />
+                                    <input type="hidden" th:value="${phone.id}"  name="phoneArr" />
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group" th:if="${profile eq 'false' }">
+                            <label   class="am-u-sm-3 am-form-label">货物<span class="tpl-form-line-small-title">水果</span></label>
+                            <div class="am-u-sm-9">
+
+                                <label th:each="store : ${storeList}" class="am-checkbox-inline" th:if="${ (store.userId eq entity.id) or (store.userId eq null ) }">
+                                    <input type="checkbox" th:value="${store.id}" name="store" minchecked="1"  th:checked="${store.userId eq entity.id}" th:text="${store.storeName}"  />
+                                    <input type="hidden" th:value="${store.id}"  name="storeArr" />
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group" th:if="${profile eq 'false' }">
+                            <label   class="am-u-sm-3 am-form-label">操作类型 <span class="tpl-form-line-small-title">用户操作</span></label>
+                            <div class="am-u-sm-9">
+                                <label th:each="type : ${typeList}" class="am-checkbox-inline"  >
+                                    <input type="checkbox" th:value="${type.id}" name="type" minchecked="1"  th:checked="${type.selectNum > 0  }"   th:text="${type.typeName}"  />
+                                    <input type="hidden" th:value="${type.id}"  name="typeArr" />
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9 am-u-sm-push-3">
+                                <button type="button" class="am-btn am-btn-primary btn-loading-example "
+                                        data-am-loading="{spinner: 'circle-o-notch', loadingText: '提交中...'}" th:attr="link=${editUrl}" id="btnSubmit">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/user/js/edit.js" th:src="@{/static/user/js/edit.js}"  ></script>
+</body>
+</html>

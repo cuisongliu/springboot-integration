@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link  rel="stylesheet" href="../../assets/css/amazeui.datetimepicker.css" th:href="@{/assets/css/amazeui.datetimepicker.css}"/>
+    <script type="text/javascript" src="../../assets/js/amazeui.datetimepicker.min.js" th:src="@{/assets/js/amazeui.datetimepicker.min.js}"  ></script>
+    <script type="text/javascript" src="../../assets/js/amazeui.datetimepicker.zh-CN.js" th:src="@{/assets/js/amazeui.datetimepicker.zh-CN.js}"  ></script>
+</head>
+<body>
+<div th:replace="includes/modules :: navigation"/>
+
+<div class="row-content am-cf">
+
+    <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+        <div class="widget am-cf">
+            <div class="widget-head am-cf">
+                <div class="widget-title am-fl">货物流水二次修改</div>
+            </div>
+            <div class="widget-body am-fr">
+                <form class="am-form tpl-form-border-form tpl-form-border-br" id="recordForm" >
+                    <div class="am-form-group">
+                        <label   class="am-u-sm-3 am-form-label">地址<span class="tpl-form-line-small-title">执行动作的地址</span></label>
+                        <div class="am-u-sm-9">
+                            <input type="hidden" name="id" th:value="${entity.id}"  />
+                            <input type="text" class="tpl-form-input" name="recordAddress" th:value="${entity.recordAddress}" placeholder="输入地址信息"   required="true" />
+                            <small>请填写地址信息。</small>
+                        </div>
+                    </div>
+
+
+                    <div class="am-form-group">
+                        <label   class="am-u-sm-3 am-form-label">货物<span class="tpl-form-line-small-title">货物</span></label>
+                        <div class="am-u-sm-9">
+                            <select data-am-selected="{btnSize: 'sm'}" required="" name="recordStore">
+                                <option value="option2" th:each="sl :${storeList}" th:value="${sl.id}"
+                                        th:selected="${sl.id eq entity.recordStore}" th:text="${sl.storeName +'['+ sl.storeAddress+']'}">IT业界</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="am-form-group">
+                        <label   class="am-u-sm-3 am-form-label">操作人<span class="tpl-form-line-small-title">操作人</span></label>
+                        <div class="am-u-sm-9">
+                            <select data-am-selected="{btnSize: 'sm'}" required="" name="recordOperator">
+                                <option value="option2" th:each="ul :${userList}" th:value="${ul.id}"
+                                        th:selected="${ul.id eq entity.recordOperator}" th:text="${ul.userName +'['+ ul.userType+']'}">IT业界</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label   class="am-u-sm-3 am-form-label">操作时间<span class="tpl-form-line-small-title">执行动作的时间</span></label>
+                        <div class="am-u-sm-9">
+                            <input type="text" class="am-form-field" name="createDate" th:value="${#dates.format(entity.recordDate,'yyyy-MM-dd HH:mm:ss')}" placeholder="输入操作时间信息"   required="true" />
+                            <small>请填写操作时间信息。</small>
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label   class="am-u-sm-3 am-form-label">执行操作<span class="tpl-form-line-small-title">执行操作</span></label>
+                        <div class="am-u-sm-9">
+                            <select data-am-selected="{btnSize: 'sm'}" required="" name="recordType">
+                                <option value="option2" th:each="tl :${typeList}" th:value="${tl.id}"
+                                        th:selected="${tl.id eq entity.recordType}" th:text="${tl.typeName +'['+ tl.typeCode+']'}">IT业界</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label   class="am-u-sm-3 am-form-label">备注<span class="tpl-form-line-small-title">额外的信息,如运输公司等.</span></label>
+                        <div class="am-u-sm-9">
+                            <input type="text" class="tpl-form-input" name="recordCompany" th:value="${entity.recordCompany}"   placeholder="输入公司信息"  />
+                            <small>请填写备注信息。</small>
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <div class="am-u-sm-9 am-u-sm-push-3">
+                            <button type="button" class="am-btn am-btn-primary btn-loading-example "
+                                    data-am-loading="{spinner: 'circle-o-notch', loadingText: '提交中...'}" th:attr="link=${editUrl}" id="btnSubmit">提交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../../assets/js/jquery.serialize-object.min.js" th:src="@{/assets/js/jquery.serialize-object.min.js}"  ></script>
+<script type="text/javascript" src="../../static/record/js/edit.js" th:src="@{/static/record/js/edit.js}"  ></script>
+</body>
+</html>

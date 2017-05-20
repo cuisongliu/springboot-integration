@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xinyuewulian.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.xinyuewulian.entity.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+    <result column="login_passwd" jdbcType="VARCHAR" property="loginPasswd" />
+    <result column="user_type" jdbcType="INTEGER" property="userType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, user_name, login_name, login_passwd, user_type
+  </sql>
+
+
+  <resultMap id="BoBaseResultMap" type="com.xinyuewulian.bo.UserBo" extends="BaseResultMap">
+    <result column="phone_num" jdbcType="INTEGER" property="phoneNum" />
+    <result column="store_num" jdbcType="INTEGER" property="storeNum" />
+    <result column="type_num" jdbcType="INTEGER" property="typeNum" />
+  </resultMap>
+
+  <select id="queryUserList"   resultMap="BoBaseResultMap" parameterType="com.xinyuewulian.vo.UserVo">
+    SELECT t.*,
+    (select count(1) from m_phone p WHERE p.user_id=t.id)  as phone_num ,
+    (select count(1) from m_store s WHERE s.user_id=t.id)  as store_num ,
+    (select count(1) from m_user_type ut where ut.user_id=t.id) as type_num
+    from m_user t  where 1=1
+    <if test="keyWords !=null  and keyWords !='' ">
+      and
+      instr(
+        concat(
+          ifnull(t.user_name, ''),
+          ifnull(t.login_name, ''),
+          CASE
+          WHEN t.user_type = 0 THEN
+          #{userType0, jdbcType=VARCHAR}
+          WHEN t.user_type = 1 THEN
+          #{userType1, jdbcType=VARCHAR}
+          ELSE
+          ''
+          END
+        ),
+        #{keyWords, jdbcType=VARCHAR})>0
+    </if>
+  </select>
+
+</mapper>

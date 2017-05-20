@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head>
+        <meta  th:replace="includes/head :: meta"/>
+        <title th:replace="includes/head :: title"></title>
+        <link  th:replace="includes/head :: common-link"/>
+        <script th:replace="includes/head :: head-common-js"></script>
+        <script th:replace="includes/head :: index-js"></script>
+	</head>
+	<body data-type="index" class="theme-white">
+        <div class="am-g tpl-g">
+            <!--头部信息-->
+            <header th:replace="includes/modules :: header"></header>
+            <!-- 侧边导航栏 -->
+            <div class="left-sidebar">
+                <!-- 用户信息 -->
+                <div th:replace="includes/modules :: user"/>
+
+                <!-- 菜单 -->
+                <!--/*@thymesVar id="menu" type="com.xinyuewulian.admin.controller.BaseController"*/-->
+                <ul th:replace="includes/menu ::  ${menu}"></ul>
+            </div>
+
+
+            <!-- 内容区域 -->
+            <div class="tpl-content-wrapper" id="content" th:attr="link=${contentUrl + 10 +'/' + 1}"></div>
+        </div>
+        <div th:replace="includes/modules :: confirmModal"/>
+
+        <div th:replace="includes/modules :: exit-modal"/>
+        <footer th:replace="includes/modules :: footer" />
+	</body>
+
+</html>

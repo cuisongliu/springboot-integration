@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xinyuewulian.mapper.StoreMapper">
+  <resultMap id="BaseResultMap" type="com.xinyuewulian.entity.Store">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="store_code" jdbcType="VARCHAR" property="storeCode" />
+    <result column="store_name" jdbcType="VARCHAR" property="storeName" />
+    <result column="store_address" jdbcType="VARCHAR" property="storeAddress" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, store_code, store_name, store_address, user_id
+  </sql>
+  <select id="queryStoreByUserId" parameterType="int"  resultMap="BaseResultMap">
+    select t.* from m_store t where t.user_id =#{_parameter}
+  </select>
+
+  <resultMap id="BoBaseResultMap" type="com.xinyuewulian.bo.StoreBo" extends="BaseResultMap">
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="record_num" property="recordNum" jdbcType="INTEGER" />
+  </resultMap>
+
+  <select id="queryStoreList"   resultMap="BoBaseResultMap" parameterType="com.xinyuewulian.vo.StoreVo">
+    SELECT t.* ,u.user_name
+    ,(select count(1) from m_record r where r.record_store = t.id) record_num
+    from m_store t LEFT JOIN  m_user u  on u.id = t.user_id
+    where 1=1
+    <if test="keyWords !=null  and keyWords !='' ">
+      and
+      instr(concat(
+      ifnull(t.store_code, ''),
+      ifnull(t.store_name, ''),
+      ifnull(t.store_address, ''),
+      ifnull(u.user_name, '')
+      ), #{keyWords, jdbcType=VARCHAR})>0
+    </if>
+    <if test="userId !=null  and userId !='' ">
+      and t.user_id =#{userId, jdbcType=INTEGER}
+    </if>
+  </select>
+
+</mapper>
