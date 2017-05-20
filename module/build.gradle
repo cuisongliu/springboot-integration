@@ -1,15 +1,3 @@
-//apply plugin: "com.cuisongliu.plugin.mybatis-generator"
-//buildscript{
-//    def baseUrl = "http://maven.cuisongliu.com"
-//    def nexusUrl = "$baseUrl/content/groups/public/"
-//    repositories {
-//        maven { url "$nexusUrl" }
-//        mavenLocal()
-//    }
-//    dependencies {
-//        classpath "com.cuisongliu.plugin:mybatis-generator:1.0"
-//    }
-//}
 buildscript{
     def baseUrl = "http://maven.cuisongliu.com"
     def nexusUrl = "$baseUrl/content/groups/public/"
@@ -26,7 +14,7 @@ plugins {
 }
 
 dependencies {
-    compile "${group}:springboot:1.0"
+    compile "${group}:springboot:1.0.0"
 }
 mbg{
     overwrite = false
