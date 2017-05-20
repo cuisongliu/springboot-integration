@@ -1,12 +1,4 @@
 dependencies {
     compile project(":service")
+    testCompile "org.springframework.boot:spring-boot-starter-test:1.5.3.RELEASE"
 }
-//                srcDir "src/main/resources/${env}"
-//
-//                sourceSets.main.resources.srcDirs.each   {
-//                    it.listFiles().each {
-//                        if(it.isDirectory()) {
-//                            exclude "${it.name}"
-//                        }
-//                    }
-//                }
