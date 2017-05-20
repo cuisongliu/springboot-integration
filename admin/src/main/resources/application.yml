@@ -12,7 +12,7 @@ spring:
   aop:
     proxy-target-class: true
   datasource:
-    url: jdbc:mysql://localhost:3306/dbname?useUnicode=true&amp;characterEncoding=UTF8&amp;autoReconnect=true
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF8&autoReconnect=true&useSSL=false
     username: root
     password:
     druid:
