@@ -28,7 +28,9 @@ spring:
         session-stat-enable: true
       stat:
         enable: true
-        aop-types: type,name
+        aop-types:
+          - type
+          - name
         target-bean-type: com.cuisongliu.springboot.core.biz.BaseBiz
         bean-names:
           - UserMapper
