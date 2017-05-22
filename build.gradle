@@ -6,9 +6,9 @@ allprojects {
     version = '1.0'
 
     repositories {
+        mavenLocal()
         maven { url "$nexusUrl" }
         mavenCentral()
-        mavenLocal()
         jcenter()
     }
 }
