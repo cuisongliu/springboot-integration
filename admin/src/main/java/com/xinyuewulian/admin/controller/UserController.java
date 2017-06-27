@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import tk.mybatis.orderbyhelper.OrderByHelper;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -78,7 +79,7 @@ public class UserController extends BaseController implements Globals {
         userVo.setUserType0(MAP_USER_HASH_TYPE.get(USER_TYPE_ADMIN));
         userVo.setUserType1(MAP_USER_HASH_TYPE.get(USER_TYPE_USER));
         Page<?> page = PageHelper.startPage(currNo,pageSize);
-//        PageHelper.orderBy("id desc");
+        OrderByHelper.orderBy("id desc");
         modifyModel("用户管理","用户列表","显示所有的用户信息.",model);
         List<UserBo> list  =  userMapper.queryUserList(userVo);
         PageInfo<UserBo> pageInfo = new PageInfo<>(list);
@@ -142,7 +143,7 @@ public class UserController extends BaseController implements Globals {
     public void initModel(Model model,Integer id){
         model.addAttribute("phoneList",phoneMapper.selectAll());
         model.addAttribute("storeList",storeMapper.selectAll());
-//        PageHelper.orderBy("type_order");
+        OrderByHelper.orderBy("type_order");
         model.addAttribute("typeList",typeMapper.queryTypeListByModify(id));
     }
     @RequestMapping(value = "/get/{id}/{pageSize}/{currNo}",method = RequestMethod.GET)

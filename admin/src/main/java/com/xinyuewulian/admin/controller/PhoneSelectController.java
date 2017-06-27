@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import tk.mybatis.orderbyhelper.OrderByHelper;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -37,7 +38,7 @@ public class PhoneSelectController extends BaseController implements Globals{
             currNo = 1;
         }
         Page<?> page = PageHelper.startPage(currNo,pageSize);
-//        PageHelper.orderBy("id desc");
+        OrderByHelper.orderBy("id desc");
         modifyModel("手持机序号管理","可选择手持机序号的列表","显示所有的手持机序号.",model);
         List<PhoneLogBo> list  = phoneLogMapper.queryPhoneSelectAllList();
         PageInfo<PhoneLogBo> pageInfo = new PageInfo<>(list);

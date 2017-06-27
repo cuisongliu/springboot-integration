@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import tk.mybatis.orderbyhelper.OrderByHelper;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -40,7 +41,7 @@ public class ParamController extends BaseController implements Globals{
             currNo = 1;
         }
         Page<?> page = PageHelper.startPage(currNo,pageSize);
-//        PageHelper.orderBy("id desc");
+        OrderByHelper.orderBy("id desc");
         modifyModel("参数信息维护","参数列表","显示所有的参数信息.",model);
         List<Param> list  = paramMapper.selectAll();
         PageInfo<Param> pageInfo = new PageInfo<>(list);

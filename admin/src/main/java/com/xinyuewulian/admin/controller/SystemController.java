@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import tk.mybatis.orderbyhelper.OrderByHelper;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -41,7 +42,7 @@ public class SystemController extends BaseController implements Globals{
             currNo = 1;
         }
         Page<?> page = PageHelper.startPage(currNo,pageSize);
-//        PageHelper.orderBy("id desc");
+        OrderByHelper.orderBy("id desc");
         modifyModel("系统接入维护","系统对接Key列表","显示所有的系统对接Key信息.",model);
         List<System> list  = systemMapper.selectAll();
         PageInfo<System> pageInfo = new PageInfo<>(list);

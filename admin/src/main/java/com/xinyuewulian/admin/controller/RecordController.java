@@ -21,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import tk.mybatis.orderbyhelper.OrderByHelper;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -54,7 +55,7 @@ public class RecordController extends BaseController implements Globals {
             currNo = 1;
         }
         Page<?> page = PageHelper.startPage(currNo,pageSize);
-//        PageHelper.orderBy("s.store_name desc , t.record_date desc,id desc");
+        OrderByHelper.orderBy("s.store_name desc , t.record_date desc,id desc");
         LoginInfo loginInfo = null;
         loginInfo = (LoginInfo) request.getSession().getAttribute(Globals.SESSION_KEY);
         if(loginInfo.getUserType().equals(Globals.USER_TYPE_USER)){
@@ -82,7 +83,7 @@ public class RecordController extends BaseController implements Globals {
     public void initModel(HttpServletRequest request,Model model){
         LoginInfo loginInfo = null;
         loginInfo = (LoginInfo) request.getSession().getAttribute(Globals.SESSION_KEY);
-//        PageHelper.orderBy("type_order");
+        OrderByHelper.orderBy("type_order");
         if(loginInfo.getUserType().equals(Globals.USER_TYPE_USER)){
             model.addAttribute("typeList",typeMapper.queryTypeByUserId(loginInfo.getId()));
             model.addAttribute("storeList",storeMapper.queryStoreByUserId(loginInfo.getId()));

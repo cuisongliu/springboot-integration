@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import tk.mybatis.orderbyhelper.OrderByHelper;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -42,7 +43,7 @@ public class TypeController extends BaseController implements Globals{
             currNo = 1;
         }
         Page<?> page = PageHelper.startPage(currNo,pageSize);
-//        PageHelper.orderBy("type_order ,id desc");
+        OrderByHelper.orderBy("type_order ,id desc");
         modifyModel("操作类型维护","操作类型列表","显示所有的操作类型信息.",model);
         List<TypeBo> list  =  typeMapper.queryTypeListByModify(null);
         PageInfo<TypeBo> pageInfo = new PageInfo<>(list);

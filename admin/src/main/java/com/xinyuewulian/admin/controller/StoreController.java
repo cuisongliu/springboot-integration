@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import tk.mybatis.orderbyhelper.OrderByHelper;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -58,7 +59,7 @@ public class StoreController extends BaseController implements Globals{
             storeVo.setUserId(loginInfo.getId());
         }
         Page<?> page = PageHelper.startPage(currNo,pageSize);
-//        PageHelper.orderBy("t.store_name desc , t.id desc");
+        OrderByHelper.orderBy("t.store_name desc , t.id desc");
         modifyModel("货物信息维护","货物列表","显示所有的货物信息.",model);
 
         List<StoreBo> list  = storeMapper.queryStoreList(storeVo);
