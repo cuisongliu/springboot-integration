@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xinyuewulian.mapper.SerialNoMapper">
+  <resultMap id="BaseResultMap" type="com.xinyuewulian.entity.SerialNo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="serial_type_id" jdbcType="VARCHAR" property="serialTypeId" />
+    <result column="code_prefix" jdbcType="VARCHAR" property="codePrefix" />
+    <result column="begin_serial_no" jdbcType="INTEGER" property="beginSerialNo" />
+    <result column="next_serial_no" jdbcType="INTEGER" property="nextSerialNo" />
+    <result column="max_serial_no" jdbcType="INTEGER" property="maxSerialNo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, serial_type_id, code_prefix, begin_serial_no, next_serial_no, max_serial_no
+  </sql>
+</mapper>

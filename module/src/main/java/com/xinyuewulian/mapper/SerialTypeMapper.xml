@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xinyuewulian.mapper.SerialTypeMapper">
+  <resultMap id="BaseResultMap" type="com.xinyuewulian.entity.SerialType">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="serial_type_code" jdbcType="VARCHAR" property="serialTypeCode" />
+    <result column="serial_type_prefix" jdbcType="VARCHAR" property="serialTypePrefix" />
+    <result column="serial_type_name" jdbcType="VARCHAR" property="serialTypeName" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="timestamp_format" jdbcType="VARCHAR" property="timestampFormat" />
+    <result column="serial_len" jdbcType="INTEGER" property="serialLen" />
+    <result column="split" jdbcType="VARCHAR" property="split" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, serial_type_code, serial_type_prefix, serial_type_name, state, timestamp_format, 
+    serial_len, split
+  </sql>
+</mapper>
