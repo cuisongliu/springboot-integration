@@ -14,7 +14,7 @@ plugins {
 }
 
 dependencies {
-    compile "${group}:springboot:1.0.3"
+    compile "${group}:springboot:1.0.4"
 }
 mbg{
     overwrite = false
