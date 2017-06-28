@@ -21,4 +21,12 @@
     id, serial_type_code, serial_type_prefix, serial_type_name, state, timestamp_format, 
     serial_len, split
   </sql>
+
+  <resultMap id="BoBaseResultMap" type="com.xinyuewulian.bo.SerialTypeBo" extends="BaseResultMap">
+    <result column="serial_id" property="serialId" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="querySerialTypeList" resultMap="BoBaseResultMap">
+    select t.*,serial.id as serial_id from s_serial_type t  LEFT JOIN  s_serial_no  serial on serial.serial_type_id = t.serial_type_code
+  </select>
 </mapper>
