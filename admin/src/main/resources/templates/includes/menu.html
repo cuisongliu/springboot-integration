@@ -40,9 +40,24 @@
         </li>
 
         <li class="sidebar-nav-link">
-            <a href="#" th:attr="link=${paramManagerUrl}" class="pjax">
-                <i class="am-icon-gg sidebar-nav-link-logo"></i> 参数信息维护
+            <a href="#" class="sidebar-nav-sub-title">
+                <i class="am-icon-gg sidebar-nav-link-logo"></i> 系统管理
+                <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
             </a>
+            <ul class="sidebar-nav sidebar-nav-sub">
+
+                <li class="sidebar-nav-link">
+                    <a href="#" th:attr="link=${paramManagerUrl}" class="pjax">
+                        <i class="am-icon-angle-right sidebar-nav-link-logo"></i> 参数信息维护
+                    </a>
+                </li>
+
+                <li class="sidebar-nav-link">
+                    <a href="#" th:attr="link=${serialNoManagerUrl}" class="pjax">
+                        <i class="am-icon-angle-right sidebar-nav-link-logo"></i> 序列号信息查看
+                    </a>
+                </li>
+            </ul>
         </li>
 
         <li class="sidebar-nav-link">

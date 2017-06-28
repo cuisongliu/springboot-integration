@@ -82,6 +82,19 @@ public enum UrlEnum {
     STORE_EDIT_SAVE_URL("/store/save/edit"),
     STORE_ADD_SAVE_URL("/store/save/add"),
 
+
+    SERIAL_TYPE_LIST_URL("/serial/type/list/"),
+    SERIAL_TYPE_DEL_URL("/serial/type/del/"),
+    SERIAL_TYPE_GET_URL("/serial/type/get/"),
+    SERIAL_TYPE_ADD_URL("/serial/type/add"),
+    SERIAL_TYPE_CODE_VALIDATION_URL("/serial/type/validation/typeCode"),
+    //edit页面的保存
+    SERIAL_TYPE_EDIT_SAVE_URL("/serial/type/save/edit"),
+    SERIAL_TYPE_ADD_SAVE_URL("/serial/type/save/add"),
+
+    SERIAL_NO_LIST_URL("/serial/no/list/"),
+
+
     PROFILE_URL("/user/profile"),
     CONTENT_URL("/content/");
 

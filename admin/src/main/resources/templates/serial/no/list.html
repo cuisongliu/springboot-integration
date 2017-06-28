@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:replace="includes/modules :: navigation"/>
+
+    <div class="row-content am-cf">
+        <div class="row">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                <div class="widget am-cf">
+                    <div class="widget-head am-cf">
+                        <div class="widget-title  am-cf">序列号序列列表</div>
+                    </div>
+                    <!--左侧按钮-->
+                    <div class="widget-body  am-fr">
+                        <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
+                            <div class="am-form-group">
+                                <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-sm">
+                                        <!--<button type="button" class="am-btn am-btn-default am-btn-success reload" th:attr="link=${addUrl}"><span class="am-icon-plus"></span> 新增</button>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--搜索框-->
+                        <!--<div class="am-u-sm-12 am-u-md-12 am-u-lg-3">-->
+                            <!--<div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">-->
+                                <!--<input type="text" class="am-form-field" name="keyWords" th:value="${keyWords}" />-->
+                                <!--<span class="am-input-group-btn">-->
+                                    <!--<button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search search-keyWords"-->
+                                            <!--type="button" id="keyWordsBtn"  th:attr="link=${ contentUrl + pageInfo.pageSize +'/' + pageInfo.pageNum }" ></button>-->
+                                <!--</span>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <div class="am-u-sm-12">
+                            <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black  dataTable"
+                                   id="example-r">
+                                <thead>
+                                <tr>
+                                    <th class="sorting">对应类型</th>
+                                    <th class="sorting">序列前缀</th>
+                                    <th class="sorting">开始序列号</th>
+                                    <th class="sorting">下个序列号</th>
+                                    <th class="sorting">最大序列号</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr  th:each="serialNo : ${list}" class="gradeX" >
+                                    <td th:text="${serialNo.serialTypeId}">0</td>
+                                    <td th:text="${serialNo.codePrefix}">0</td>
+                                    <td th:text="${serialNo.beginSerialNo}">0</td>
+                                    <td th:text="${serialNo.nextSerialNo}">0</td>
+                                    <td th:text="${serialNo.maxSerialNo}">0</td>
+                                </tr>
+                                <tr class="odd" th:if="${pageInfo.size eq 0 }"><td valign="top" colspan="6" class="dataTables_empty">表中数据为空</td></tr>
+                                <!-- more data -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div th:replace="includes/modules :: pageDiv"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../static/index/js/content.js" th:src="@{/static/index/js/content.js}" ></script>
+</body>
+</html>

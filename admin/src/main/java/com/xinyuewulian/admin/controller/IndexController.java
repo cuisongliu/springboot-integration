@@ -62,6 +62,7 @@ public class IndexController extends BaseController {
             model.addAttribute("phoneSelectManagerUrl", UrlEnum.PHONE_SELECT_LIST_URL.getUrl()+"/10/1");
             model.addAttribute("systemManagerUrl", UrlEnum.SYSTEM_LIST_URL.getUrl()+"/10/1");
             model.addAttribute("typeManagerUrl", UrlEnum.TYPE_LIST_URL.getUrl()+"/10/1");
+            model.addAttribute("serialNoManagerUrl", UrlEnum.SERIAL_NO_LIST_URL.getUrl()+"/10/1");
         }
     }
 
