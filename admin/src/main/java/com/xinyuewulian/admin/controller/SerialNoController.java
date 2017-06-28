@@ -25,7 +25,7 @@ public class SerialNoController extends BaseController implements Globals{
     private SerialNoMapper serialNoMapper;
 
     @RequestMapping(value = "/list/{pageSize}/{currNo}")
-    public String typeList(Model model, HttpServletRequest request,
+    public String serialNoList(Model model, HttpServletRequest request,
                            @PathVariable("pageSize") Integer pageSize, @PathVariable("currNo") Integer currNo)  {
         if(null ==pageSize){
             pageSize = 10;

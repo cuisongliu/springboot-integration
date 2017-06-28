@@ -64,4 +64,20 @@ public interface Globals {
      * 下拉列表
      */
     Map<Integer,String> MAP_SYSTEM_LINKED_TYPE = new LinkedHashMap<>(MAP_SYSTEM_HASH_TYPE);
+
+
+    /**
+     * 显示内容
+     */
+    Map<Integer,String> MAP_STATE_HASH_TYPE = new HashMap<Integer,String>(){
+        {
+            put(1,"启用");
+            put(-1,"停用");
+        }
+    };
+
+    /**
+     * 下拉列表
+     */
+    Map<Integer,String> MAP_STATE_LINKED_TYPE = new LinkedHashMap<>(MAP_STATE_HASH_TYPE);
 }
