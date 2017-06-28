@@ -77,7 +77,7 @@ public enum UrlEnum {
     STORE_QR_URL("/store/qr/"),
     STORE_GET_URL("/store/get/"),
     STORE_ADD_URL("/store/add"),
-    STORE_STORECODE_VALIDATION_URL("/store/validation/phoneSerial"),
+//    STORE_STORECODE_VALIDATION_URL("/store/validation/phoneSerial"),
     //edit页面的保存
     STORE_EDIT_SAVE_URL("/store/save/edit"),
     STORE_ADD_SAVE_URL("/store/save/add"),
@@ -87,7 +87,7 @@ public enum UrlEnum {
     SERIAL_TYPE_DEL_URL("/serial/type/del/"),
     SERIAL_TYPE_GET_URL("/serial/type/get/"),
     SERIAL_TYPE_ADD_URL("/serial/type/add"),
-    SERIAL_TYPE_CODE_VALIDATION_URL("/serial/type/validation/typeCode"),
+    SERIAL_TYPE_CODE_VALIDATION_URL("/serial/type/validation/serialTypeCode"),
     //edit页面的保存
     SERIAL_TYPE_EDIT_SAVE_URL("/serial/type/save/edit"),
     SERIAL_TYPE_ADD_SAVE_URL("/serial/type/save/add"),

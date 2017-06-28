@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    <div th:replace="includes/modules :: navigation"/>
+
+    <div class="row-content am-cf">
+
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-fl">参数设置</div>
+                </div>
+                <div class="widget-body am-fr">
+                    <form class="am-form tpl-form-border-form tpl-form-border-br" id="paramForm" >
+
+                        <div class="am-form-group">
+                            <label   class="am-u-sm-3 am-form-label">参数编码<span class="tpl-form-line-small-title">参数编码</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="tpl-form-input"    th:value="${entity.paramCode}" disabled=""></input>
+                                <input type="hidden" name="id" th:value="${entity.id}"  />
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label   class="am-u-sm-3 am-form-label">参数名称<span class="tpl-form-line-small-title">参数名称</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="tpl-form-input" th:value="${entity.paramName}" name="paramName"  required="true" minlength="3"    placeholder="输入参数名称（至少 3 个字符）"/>
+                                <small>请填写参数名称。</small>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label   class="am-u-sm-3 am-form-label">参数值<span class="tpl-form-line-small-title">参数值</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="tpl-form-input" th:value="${entity.paramValue}" name="paramValue"  required="true"  placeholder="输入参数值"/>
+                                <small>请填写参数值。</small>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label   class="am-u-sm-3 am-form-label">参数类型<span class="tpl-form-line-small-title">参数类型</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="tpl-form-input"    th:value="${paramTypeMap[entity.paramType]}" disabled=""></input>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9 am-u-sm-push-3">
+                                <button type="button" class="am-btn am-btn-primary btn-loading-example "
+                                        data-am-loading="{spinner: 'circle-o-notch', loadingText: '提交中...'}" th:attr="link=${editUrl}" id="btnSubmit">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/param/js/edit.js" th:src="@{/static/param/js/edit.js}"  ></script>
+</body>
+</html>
