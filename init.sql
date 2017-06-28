@@ -196,3 +196,34 @@ INSERT INTO `m_user_type` VALUES ('4', '2', '2');
 INSERT INTO `m_user_type` VALUES ('5', '2', '3');
 INSERT INTO `m_user_type` VALUES ('6', '2', '4');
 INSERT INTO `m_user_type` VALUES ('7', '2', '5');
+
+
+-- ----------------------------
+-- Table structure for s_serial_no
+-- ----------------------------
+DROP TABLE IF EXISTS `s_serial_no`;
+CREATE TABLE `s_serial_no` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `serial_type_id` varchar(300) NOT NULL COMMENT '对应类型ID',
+  `code_prefix` varchar(300) NOT NULL COMMENT '对应单据类型序列前缀',
+  `begin_serial_no` int(11) NOT NULL COMMENT '开始序列号',
+  `next_serial_no` int(11) NOT NULL COMMENT '下个序列号',
+  `max_serial_no` int(11) NOT NULL COMMENT '最大序列号',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for s_serial_type
+-- ----------------------------
+DROP TABLE IF EXISTS `s_serial_type`;
+CREATE TABLE `s_serial_type` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `serial_type_code` varchar(200) NOT NULL COMMENT '编码唯一非空',
+  `serial_type_prefix` varchar(200) NOT NULL COMMENT '前缀',
+  `serial_type_name` varchar(200) NOT NULL COMMENT '类型名字',
+  `state` int(11) NOT NULL COMMENT '有效0无效-1',
+  `timestamp_format` varchar(100) DEFAULT NULL COMMENT '时间格式',
+  `serial_len` int(11) DEFAULT NULL COMMENT '递增长度(几位数字)',
+  `split` varchar(10) DEFAULT NULL COMMENT '分隔符',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
