@@ -44,16 +44,24 @@
                                     <th class="sorting">开始序列号</th>
                                     <th class="sorting">下个序列号</th>
                                     <th class="sorting">最大序列号</th>
+                                    <th class="sorting">查看序列类型</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
                                 <tr  th:each="serialNo : ${list}" class="gradeX" >
-                                    <td th:text="${serialNo.serialTypeId}">0</td>
+                                    <td th:text="${serialNo.serialTypeId}">ee</td>
                                     <td th:text="${serialNo.codePrefix}">0</td>
                                     <td th:text="${serialNo.beginSerialNo}">0</td>
                                     <td th:text="${serialNo.nextSerialNo}">0</td>
                                     <td th:text="${serialNo.maxSerialNo}">0</td>
+                                    <td>
+                                        <div class="tpl-table-black-operation">
+                                            <a href="javascript:;" class="reload" th:attr="link=${typeUrl+serialNo.serialTypeId}">
+                                                <i class="am-icon-search"></i> 查看
+                                            </a>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr class="odd" th:if="${pageInfo.size eq 0 }"><td valign="top" colspan="6" class="dataTables_empty">表中数据为空</td></tr>
                                 <!-- more data -->

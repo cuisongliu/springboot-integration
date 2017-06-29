@@ -41,6 +41,7 @@ public class SerialNoController extends BaseController implements Globals{
         model.addAttribute("pageInfo",pageInfo);
         model.addAttribute("list",list);
         model.addAttribute("loginInfo",getLoginInfo(request));
+        model.addAttribute("typeUrl",UrlEnum.SERIAL_TYPE_GET_URL.getUrl());
         model.addAttribute("contentUrl", UrlEnum.TYPE_LIST_URL.getUrl());
         return  "serial/no/list";
     }

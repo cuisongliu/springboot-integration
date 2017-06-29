@@ -1,8 +1,6 @@
 package com.xinyuewulian.admin.extra;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by cuisongliu on 2016/11/22.
@@ -80,4 +78,18 @@ public interface Globals {
      * 下拉列表
      */
     Map<Integer,String> MAP_STATE_LINKED_TYPE = new LinkedHashMap<>(MAP_STATE_HASH_TYPE);
+
+
+    /**
+     * 显示内容
+     */
+    List<String> DATE_FORMAT_LIST = new ArrayList<String>(){
+        {
+            add("yyyy");
+            add("yyyyMM");
+            add("yyyyMMdd");
+            add("yyyyMMddHH");
+            add("yyyyMMddHHmm");
+        }
+    };
 }

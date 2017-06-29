@@ -67,6 +67,7 @@ public class SerialTypeController extends BaseController implements Globals{
         modifyModel("序列类型信息维护","新增序列类型","新增序列类型,设置序列类型信息.",model);
         model.addAttribute("saveUrl", UrlEnum.SERIAL_TYPE_ADD_SAVE_URL.getUrl());
         model.addAttribute("stateMap", MAP_STATE_LINKED_TYPE);
+        model.addAttribute("formatList", DATE_FORMAT_LIST);
         model.addAttribute("serialTypeCodeValidateUrl", UrlEnum.SERIAL_TYPE_CODE_VALIDATION_URL.getUrl());
         return  "serial/type/add";
     }
@@ -101,10 +102,23 @@ public class SerialTypeController extends BaseController implements Globals{
         SerialType serialType = serialTypeService.getByID(id);
         modifyModel("序列类型信息维护","修改序列类型信息","管理员对序列类型信息进行修改操作.",model);
         model.addAttribute("entity",serialType);
+        model.addAttribute("stateMap", MAP_STATE_LINKED_TYPE);
+        model.addAttribute("formatList", DATE_FORMAT_LIST);
         model.addAttribute("editUrl", UrlEnum.SERIAL_TYPE_EDIT_SAVE_URL.getUrl());
         return  "serial/type/edit";
     }
 
+    @RequestMapping(value = "/get/{code}",method = RequestMethod.GET)
+    public String serialTypeView(Model model, HttpServletRequest request,@PathVariable("code") String code) {
+        SerialType type = new SerialType();
+        type.setSerialTypeCode(code);
+        SerialType serialType = serialTypeService.getByEntity(type);
+        modifyModel("序列类型信息查看","查看序列类型信息","管理员对序列类型信息进行查看操作.",model);
+        model.addAttribute("entity",serialType);
+        model.addAttribute("stateMap", MAP_STATE_LINKED_TYPE);
+        model.addAttribute("listUrl", UrlEnum.SERIAL_NO_LIST_URL.getUrl()+"10/1");
+        return  "serial/type/view";
+    }
 
     @RequestMapping(value = "/save/edit",method = RequestMethod.POST)
     public String serialTypeEditCurrent(Model model, HttpServletRequest request, SerialType entity  ) throws IOException {

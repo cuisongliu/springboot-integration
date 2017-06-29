@@ -11,39 +11,70 @@
         <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
             <div class="widget am-cf">
                 <div class="widget-head am-cf">
-                    <div class="widget-title am-fl">参数设置</div>
+                    <div class="widget-title am-fl">序列类型设置</div>
                 </div>
                 <div class="widget-body am-fr">
-                    <form class="am-form tpl-form-border-form tpl-form-border-br" id="paramForm" >
+                    <form class="am-form tpl-form-border-form tpl-form-border-br" id="serialTypeForm" >
 
                         <div class="am-form-group">
-                            <label   class="am-u-sm-3 am-form-label">参数编码<span class="tpl-form-line-small-title">参数编码</span></label>
+                            <label   class="am-u-sm-3 am-form-label">序列类型编码<span class="tpl-form-line-small-title">序列类型编码</span></label>
                             <div class="am-u-sm-9">
-                                <input type="text" class="tpl-form-input"    th:value="${entity.paramCode}" disabled=""></input>
+                                <input type="text" class="tpl-form-input"    th:value="${entity.serialTypeCode}" disabled=""></input>
                                 <input type="hidden" name="id" th:value="${entity.id}"  />
                             </div>
                         </div>
 
                         <div class="am-form-group">
-                            <label   class="am-u-sm-3 am-form-label">参数名称<span class="tpl-form-line-small-title">参数名称</span></label>
+                            <label   class="am-u-sm-3 am-form-label">序列类型名称<span class="tpl-form-line-small-title">序列类型名称</span></label>
                             <div class="am-u-sm-9">
-                                <input type="text" class="tpl-form-input" th:value="${entity.paramName}" name="paramName"  required="true" minlength="3"    placeholder="输入参数名称（至少 3 个字符）"/>
-                                <small>请填写参数名称。</small>
+                                <input type="text" class="tpl-form-input" name="serialTypeName" th:value="${entity.serialTypeName}"  required="true" minlength="3"    placeholder="输入序列类型名称（至少 3 个字符）"/>
+                                <small>请填写序列类型名称。</small>
                             </div>
                         </div>
 
                         <div class="am-form-group">
-                            <label   class="am-u-sm-3 am-form-label">参数值<span class="tpl-form-line-small-title">参数值</span></label>
+                            <label   class="am-u-sm-3 am-form-label">序列类型前缀<span class="tpl-form-line-small-title">序列类型前缀</span></label>
                             <div class="am-u-sm-9">
-                                <input type="text" class="tpl-form-input" th:value="${entity.paramValue}" name="paramValue"  required="true"  placeholder="输入参数值"/>
-                                <small>请填写参数值。</small>
+                                <input type="text" class="tpl-form-input" name="serialTypePrefix" th:value="${entity.serialTypePrefix}"   required="true" minlength="1"    placeholder="输入序列类型名称（至少 1 个字符）"/>
+                                <small>请填写序列类型前缀。</small>
+                            </div>
+                        </div>
+
+
+                        <div class="am-form-group">
+                            <label   class="am-u-sm-3 am-form-label">状态<span class="tpl-form-line-small-title">状态</span></label>
+                            <div class="am-u-sm-9">
+                                <select data-am-selected="{btnSize: 'sm'}" required="" name="state">
+                                    <option value="option2" th:each="ptm :${stateMap}" th:value="${ptm.key}" th:text="${ptm.value}"
+                                    th:selected="${ptm.key eq entity.state}">state</option>
+                                </select>
                             </div>
                         </div>
 
                         <div class="am-form-group">
-                            <label   class="am-u-sm-3 am-form-label">参数类型<span class="tpl-form-line-small-title">参数类型</span></label>
+                            <label   class="am-u-sm-3 am-form-label">时间格式<span class="tpl-form-line-small-title">时间格式</span></label>
                             <div class="am-u-sm-9">
-                                <input type="text" class="tpl-form-input"    th:value="${paramTypeMap[entity.paramType]}" disabled=""></input>
+                                <select data-am-selected="{btnSize: 'sm'}" required="" name="timestampFormat">
+                                    <!--th:selected="${ptm.key eq entity.timestampFormat}"-->
+                                    <option value="option2" th:each="ptm :${formatList}"  th:selected="${ptm eq entity.timestampFormat}"
+                                            th:value="${ptm}" th:text="${ptm}">date</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label   class="am-u-sm-3 am-form-label">递增长度(几位数字)<span class="tpl-form-line-small-title">递增长度(几位数字)</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="number" class="tpl-form-input" name="serialLen"   th:value="${entity.serialLen}"   placeholder="输入序列类型递增长度(几位数字)"/>
+                                <small>请填写序列类型递增长度(几位数字)。</small>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label   class="am-u-sm-3 am-form-label">分隔符<span class="tpl-form-line-small-title">分隔符</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="tpl-form-input" name="split"   th:value="${entity.split}"      placeholder="输入序列类型分隔符"/>
+                                <small>请填写序列类型分隔符。</small>
                             </div>
                         </div>
 
@@ -58,6 +89,6 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="../static/param/js/edit.js" th:src="@{/static/param/js/edit.js}"  ></script>
+    <script type="text/javascript" src="../static/serial/type/js/edit.js" th:src="@{/static/serial/type/js/edit.js}"  ></script>
 </body>
 </html>

@@ -27,6 +27,6 @@
   </resultMap>
 
   <select id="querySerialTypeList" resultMap="BoBaseResultMap">
-    select t.*,serial.id as serial_id from s_serial_type t  LEFT JOIN  s_serial_no  serial on serial.serial_type_id = t.serial_type_code
+    select t.*,(select count(1) from  s_serial_no  serial where serial.serial_type_id = t.serial_type_code )  as serial_id from s_serial_type t
   </select>
 </mapper>
